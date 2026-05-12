@@ -1,0 +1,30 @@
+# Dados brutos grandes do INEP
+microdados_enem_2024/DADOS/*.csv
+microdados_enem_2024/PROVAS E GABARITOS/
+microdados_enem_2024/LEIA-ME E DOCUMENTOS TùCNICOS/
+microdados_enem_2024/PROVAS*/
+microdados_enem_2024/LEIA-ME*/
+
+# Arquivos locais do Power BI
+*.pbix
+*.pbit
+*.pbip
+
+# Ambientes e credenciais
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+
+# Saidas temporarias
+*.log
+*.tmp
+~$*
+
+# Cache de sistema/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.cursor/
+
