@@ -48,8 +48,17 @@ Esses arquivos auxiliaram na identificacao de codigos, rotulos e tipos de variav
 AV2-TRABALHO-1-ENEM/
 |-- AV2-TRABALHO-1-ENEM.md
 |-- README.MD
+|-- dashboard_ENEM2024.pdf
 |-- docs/
-|   `-- MODELO_OLAP_ENEM_2024.md
+|   |-- MODELO_OLAP_ENEM_2024.md
+|   `-- dashboard/
+|       |-- 01_menu_principal.png
+|       |-- 02_visao_geografica.png
+|       |-- 03_perfil_socioeconomico.png
+|       |-- 04_melhores_notas.png
+|       |-- 05_capital_interior.png
+|       |-- 06_escola_publica_privada.png
+|       `-- 07_nota_media_estado_regiao.png
 |-- microdados_enem_2024/
 |   |-- DADOS/
 |   |-- INPUTS/
@@ -76,7 +85,8 @@ O desenvolvimento seguiu o plano de execucao definido para o projeto:
 4. Criacao do modelo estrela no schema `olap`.
 5. Criacao de views analiticas para responder as perguntas do dashboard.
 6. Criacao de uma camada fisica agregada no schema `powerbi`, para importacao estavel no Power BI.
-7. Documentacao do processo, das justificativas e dos insights obtidos.
+7. Construcao do dashboard no Power BI Desktop e exportacao das paginas em `dashboard_ENEM2024.pdf`.
+8. Documentacao do processo, das justificativas, dos visuais e dos insights obtidos.
 
 ## Arquitetura dos Dados
 
@@ -286,71 +296,133 @@ Para um dashboard mais leve, recomenda-se importar somente as tabelas do schema 
 
 A versao anterior da orientacao, baseada no schema `olap`, esta em `powerbi/README_POWERBI_versao_anterior.md`. Ela foi preservada porque descreve o modelo estrela completo e os relacionamentos entre fato e dimensoes.
 
-## Paginas Sugeridas para o Dashboard
+## Dashboard ENEM 2024 (Power BI)
 
-### 1. Visao Geral Geografica
+O dashboard foi construido no Power BI Desktop e exportado em `dashboard_ENEM2024.pdf`. As capturas de tela de cada pagina estao em `docs/dashboard/` para consulta no repositorio e neste README.
 
-Fonte recomendada: `powerbi.pb_01_desempenho_estado_regiao`
+Arquivo do projeto no Power BI: `AV2_ENEM2024_TRB1.pbix` (salvo localmente em `Documents`).
 
-Visuais:
+O dashboard possui menu de navegacao com tres paginas analiticas principais, alem de visuais complementares para comparacao por localidade e rede escolar.
 
-- Cartao com total de participantes.
-- Cartao com media geral.
-- Cartao com media de redacao.
-- Grafico de barras por regiao.
-- Mapa ou visual geografico por UF.
+### Menu principal
 
-### 2. Perfil Socioeconomico
+Pagina inicial com visao geral do trabalho, objetivos das 10 perguntas de negocio e botoes de navegacao para as demais paginas.
 
-Fonte recomendada: `powerbi.pb_02_desempenho_faixa_socioeconomica`
+![Menu principal do dashboard](docs/dashboard/01_menu_principal.png)
 
-Visuais:
+### Pagina 1 — Visao Geografica
 
-- Barras por faixa socioeconomica.
-- Matriz por renda familiar.
-- Segmentadores por faixa socioeconomica e renda.
+Fonte: `powerbi.pb_01_desempenho_estado_regiao` e `powerbi.pb_08_capital_interior`.
 
-### 3. Redacao e Maiores Notas
+Visuais implementados:
 
-Fontes recomendadas:
+- Cartoes: quantidade de participantes (4,33 Mi), media geral (535,10) e media de redacao (624,72).
+- Mapa do Brasil por UF com intensidade de desempenho.
+- Grafico de barras: estados por regiao.
+- Grafico de barras: participantes por regiao.
+- Grafico de barras: escolas em capital versus interior por regiao.
 
-- `powerbi.pb_03_top_redacoes_localidade`
-- `powerbi.pb_04_top_notas_area_geografica`
+Perguntas atendidas:
 
-Visuais:
+| # | Pergunta |
+|---|----------|
+| 1 | Desempenho medio por Estado e Regiao |
+| 8 | Diferencas entre alunos de capitais e do interior (visao por regiao) |
 
-- Tabela de maiores notas de redacao por UF e municipio.
-- Ranking por area de conhecimento.
-- Grafico por UF, municipio e area.
+![Visao Geografica ENEM2024](docs/dashboard/02_visao_geografica.png)
 
-### 4. Demografia e Desempenho
+### Pagina 2 — Perfil Socioeconomico
 
-Fontes recomendadas:
+Fonte: `powerbi.pb_02_desempenho_faixa_socioeconomica`.
 
-- `powerbi.pb_05_notas_genero_socioeconomica`
-- `powerbi.pb_06_notas_faixa_etaria`
-- `powerbi.pb_07_notas_raca_cor`
-- `powerbi.pb_09_genero_por_area`
+Visuais implementados:
 
-Visuais:
+- Grafico de barras e tabela: quantidade de participantes por renda familiar.
+- Cartoes com media por area de conhecimento (Ciencias Humanas, Ciencias da Natureza, Linguagens e Codigos, Matematica, Redacao) e media geral.
 
-- Barras por genero e area de conhecimento.
-- Barras por faixa etaria.
-- Barras por raca/cor.
-- Matriz cruzando genero, situacao socioeconomica e media.
+Pergunta atendida:
 
-### 5. Escola e Capital versus Interior
+| # | Pergunta |
+|---|----------|
+| 2 | Desempenho medio por faixa socioeconomica |
 
-Fontes recomendadas:
+![Perfil Socioeconomico ENEM2024](docs/dashboard/03_perfil_socioeconomico.png)
 
-- `powerbi.pb_08_capital_interior`
-- `powerbi.pb_10_rede_escola_por_area`
+### Pagina 3 — Melhores Notas
 
-Visuais:
+Fontes: `powerbi.pb_03_top_redacoes_localidade`, `powerbi.pb_04_top_notas_area_geografica`, `powerbi.pb_05_notas_genero_socioeconomica`, `powerbi.pb_06_notas_faixa_etaria`, `powerbi.pb_07_notas_raca_cor`, `powerbi.pb_09_genero_por_area`.
 
-- Comparacao entre capital e interior.
-- Comparacao entre rede publica e privada.
-- Segmentadores por area de conhecimento.
+Visuais implementados:
+
+- Painel: melhores notas por area de conhecimento.
+- Tabela: maiores notas de redacao por UF e municipio (nota maxima e media de redacao).
+- Grafico de barras empilhadas: quantidade de participantes por sexo e area de conhecimento.
+- Grafico de barras empilhadas: quantidade de participantes por raca/cor e area de conhecimento.
+- Grafico de barras: media de nota por faixa etaria e area de conhecimento.
+
+Perguntas atendidas:
+
+| # | Pergunta |
+|---|----------|
+| 3 | Distribuicao das maiores notas de redacao por Estado e municipio |
+| 4 | Distribuicao geografica dos alunos com maiores notas por area de conhecimento |
+| 5 | Distribuicao das notas por genero e situacao socioeconomica |
+| 6 | Distribuicao das notas por faixa etaria |
+| 7 | Distribuicao das notas por raca/cor |
+| 9 | Comparacao das notas por genero em cada area de conhecimento |
+
+![Melhores Notas ENEM2024](docs/dashboard/04_melhores_notas.png)
+
+### Visuais complementares — Capital, Interior e Rede Escolar
+
+Fontes: `powerbi.pb_08_capital_interior`, `powerbi.pb_10_rede_escola_por_area`, `powerbi.pb_01_desempenho_estado_regiao`.
+
+#### Capital versus Interior
+
+Grafico de barras agrupadas: nota media por area de conhecimento, comparando capital e interior.
+
+| # | Pergunta |
+|---|----------|
+| 8 | Diferencas entre alunos de capitais e do interior |
+
+![Capital versus Interior](docs/dashboard/05_capital_interior.png)
+
+#### Escola publica versus privada
+
+Grafico de barras agrupadas: nota media por area de conhecimento, comparando rede publica e privada.
+
+| # | Pergunta |
+|---|----------|
+| 10 | Media de notas entre alunos de escolas publicas e privadas por area |
+
+![Escola publica versus privada](docs/dashboard/06_escola_publica_privada.png)
+
+#### Nota media por Estado e Regiao
+
+Visual de treemap (ou mapa de arvore) com nota media por UF, incluindo percentual de participacao por estado.
+
+| # | Pergunta |
+|---|----------|
+| 1 | Desempenho medio por Estado e Regiao (detalhamento por UF) |
+
+![Nota media por Estado e Regiao](docs/dashboard/07_nota_media_estado_regiao.png)
+
+### Resumo: perguntas x paginas do dashboard
+
+| Pergunta | Pagina / visual principal |
+|----------|---------------------------|
+| 1. Desempenho por Estado e Regiao | Visao Geografica; Nota media por UF |
+| 2. Desempenho por faixa socioeconomica | Perfil Socioeconomico |
+| 3. Maiores notas de redacao | Melhores Notas (tabela UF/municipio) |
+| 4. Maiores notas por area e geografia | Melhores Notas (painel por area) |
+| 5. Notas por genero e socioeconomia | Melhores Notas (sexo x area) |
+| 6. Notas por faixa etaria | Melhores Notas (faixa etaria) |
+| 7. Notas por raca/cor | Melhores Notas (raca/cor) |
+| 8. Capital versus interior | Visao Geografica; visual Capital/Interior |
+| 9. Genero por area de conhecimento | Melhores Notas (sexo x area) |
+| 10. Escola publica versus privada | Visual rede publica/privada |
+
+Documentacao detalhada de conexao e medidas DAX: `powerbi/README_POWERBI.md`.
 
 ## Resultados da Execucao
 
