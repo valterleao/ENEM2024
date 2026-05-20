@@ -5,8 +5,9 @@ microdados_enem_2024/LEIA-ME E DOCUMENTOS TùCNICOS/
 microdados_enem_2024/PROVAS*/
 microdados_enem_2024/LEIA-ME*/
 
-# Arquivos locais do Power BI
+# Arquivos locais do Power BI (exceto o projeto entregue)
 *.pbix
+!powerbi/AV2_ENEM2024_TRB1.pbix
 *.pbit
 *.pbip
 
