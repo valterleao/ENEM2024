@@ -300,7 +300,7 @@ A versao anterior da orientacao, baseada no schema `olap`, esta em `powerbi/READ
 
 O dashboard foi construido no Power BI Desktop e exportado em `dashboard_ENEM2024.pdf`. As capturas de tela de cada pagina estao em `docs/dashboard/` para consulta no repositorio e neste README.
 
-Arquivo do projeto no Power BI: `AV2_ENEM2024_TRB1.pbix` (salvo localmente em `Documents`).
+Arquivo do projeto no Power BI: `powerbi/AV2_ENEM2024_TRB1.pbix` (versionado no repositorio via Git LFS).
 
 O dashboard possui menu de navegacao com tres paginas analiticas principais, alem de visuais complementares para comparacao por localidade e rede escolar.
 
